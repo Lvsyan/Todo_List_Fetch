@@ -18,6 +18,7 @@ const Home = () => {
 		}
 	};
 
+	//Get Fetch
 	useEffect(() => {
 		fetchTask();
 	}, []);
@@ -26,6 +27,7 @@ const Home = () => {
 		const response = await fetch(
 			"https://assets.breatheco.de/apis/fake/todos/user/sergi",
 			{
+				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -34,6 +36,19 @@ const Home = () => {
 		const tasks = await response.json();
 
 		console.log(tasks);
+	};
+
+	//Put Fetch
+	useEffect(() => {
+		fetchLista();
+	}, []);
+
+	const fetchLista = async () => {
+		const resp = await fetch("https://github.com/Lvsyan/Todo_List_Fetch", {
+			method: "PUT",
+		});
+		const tas = await resp.json();
+		console.log(tas);
 	};
 
 	const handleMouseOver = () => {
