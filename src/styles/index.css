@@ -10,3 +10,43 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+body{
+    background-color: coral;
+}
+
+.button{
+    color: black;
+    border-style: none;
+    font-size: 25px;
+    background-color: white;
+}
+
+h1{
+    font-size: 80px;
+}
+.bas{
+    width: 40rem;
+    height: 3rem;
+    background-color: white;
+}
+.basic{
+    width: 40rem;
+    height: 2rem;
+    background-color: white;
+    
+}
+.basic1{
+    width: 39rem;
+    height: 5px;
+    background-color: white;
+}
+.basic2{
+    width: 38rem;
+    height: 5px;
+    background-color: white;
+}
+.basic3{
+    width: 37rem;
+    height: 5px;
+    background-color: white;
+}
