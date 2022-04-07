@@ -51,6 +51,7 @@ const Home = () => {
 		console.log(tas);
 	};
 
+	//Mouse X
 	const handleMouseOver = () => {
 		setDisplay(true);
 	};
