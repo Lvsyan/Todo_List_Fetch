@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ListaTarea from "./listaTarea.jsx";
 
 const Home = () => {
 	const [task, setTask] = useState("");
@@ -33,31 +34,28 @@ const Home = () => {
 				},
 			}
 		);
+		//Transforma de JSON a objeto
 		const tasks = await response.json();
-
-		console.log(tasks);
+		setList(tasks);
 	};
 
 	//Put Fetch
 	useEffect(() => {
 		fetchLista();
-	}, []);
+	}, [list]);
 
 	const fetchLista = async () => {
-		const resp = await fetch("https://github.com/Lvsyan/Todo_List_Fetch", {
-			method: "PUT",
-		});
-		const tas = await resp.json();
-		console.log(tas);
-	};
-
-	//Mouse X
-	const handleMouseOver = () => {
-		setDisplay(true);
-	};
-
-	const handleMouseOut = () => {
-		setDisplay(false);
+		const resp = await fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/sergi",
+			{
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				//Transforma de objeto a JSON
+				body: JSON.stringify(list),
+			}
+		);
 	};
 
 	return (
@@ -74,30 +72,12 @@ const Home = () => {
 							setTask(e.target.value);
 						}}
 					/>
-					{list.map((items, index) => {
-						return (
-							<div key={index} className="d-flex tasks">
-								<div
-									className="shadow bas task border border-secondary ps-5"
-									onMouseOver={handleMouseOver}
-									onMouseOut={handleMouseOut}>
-									{items.label}
-									<button
-										onClick={() => {
-											setList(
-												list.filter(
-													(f, k) => k != index
-												)
-											);
-											console.log(list);
-										}}
-										className="button">
-										X
-									</button>
-								</div>
-							</div>
-						);
-					})}
+					<ListaTarea
+						list={list}
+						removeTask={(a) =>
+							setList(list.filter((e, i) => i != a))
+						}
+					/>
 					<div className="shadow basic counter border border-seconday ps-2">
 						{todo}
 					</div>
