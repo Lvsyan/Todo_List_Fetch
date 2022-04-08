@@ -4,23 +4,18 @@ import ListaTarea from "./listaTarea.jsx";
 const Home = () => {
 	const [task, setTask] = useState("");
 	const [list, setList] = useState([]);
-
-	let todo = list.length;
-	if (todo === 0) {
-		todo = "No tasks, add a task";
-	} else {
-		todo = list.length + " " + "Items left";
-	}
+	const [firstRender, setFirstRender] = useState(false);
 
 	const handleKeyDown = (event) => {
 		if (event.key === "Enter") {
-			setList([...list, { label: task, done: false }]);
+			setList([...list, { label: task, done: true }]);
 			setTask("");
 		}
 	};
 
 	//Get Fetch
 	useEffect(() => {
+		setFirstRender(true);
 		fetchTask();
 	}, []);
 
@@ -41,7 +36,9 @@ const Home = () => {
 
 	//Put Fetch
 	useEffect(() => {
-		fetchLista();
+		if (firstRender) {
+			fetchLista();
+		}
 	}, [list]);
 
 	const fetchLista = async () => {
@@ -79,7 +76,9 @@ const Home = () => {
 						}
 					/>
 					<div className="shadow basic counter border border-seconday ps-2">
-						{todo}
+						{list.length <= 1
+							? "No tasks, add a task"
+							: list.length - 1 + " " + "Items left"}
 					</div>
 					<div className="shadow basic1 counter border border-dark mx-auto"></div>
 					<div className="shadow basic2 counter border border-seconday mx-auto"></div>

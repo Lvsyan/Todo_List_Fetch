@@ -6,12 +6,18 @@ const ListaTarea = (props) => {
 	return (
 		<div>
 			{props.list
-				? props.list.map((task, index) => (
-						<Tarea
-							key={index}
-							tasks={task}
-							removeTask={() => props.removeTask(index)}></Tarea>
-				  ))
+				? props.list.map((task, index) => {
+						if (task.done != false) {
+							return (
+								<Tarea
+									key={index}
+									tasks={task}
+									removeTask={() =>
+										props.removeTask(index)
+									}></Tarea>
+							);
+						}
+				  })
 				: null}
 		</div>
 	);
