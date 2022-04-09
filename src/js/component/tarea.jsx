@@ -36,7 +36,7 @@ const Tarea = (props) => {
 };
 
 Tarea.propTypes = {
-	tasks: PropTypes.string,
+	tasks: PropTypes.object,
 	removeTask: PropTypes.func,
 };
 
