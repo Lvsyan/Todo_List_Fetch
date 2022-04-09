@@ -6,6 +6,7 @@ const Home = () => {
 	const [list, setList] = useState([]);
 	const [firstRender, setFirstRender] = useState(false);
 
+	// ...element = Spread operator
 	const handleKeyDown = (event) => {
 		if (event.key === "Enter") {
 			setList([...list, { label: task, done: true }]);
